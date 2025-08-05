@@ -12,15 +12,15 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String tile;
+    private String title;
     private String author;
     private double price;
 
     public Book() {
     }
 
-    public Book(String tile, String author, double price) {
-        this.tile = tile;
+    public Book(String title, String author, double price) {
+        this.title = title;
         this.author = author;
         this.price = price;
     }
@@ -33,12 +33,12 @@ public class Book {
         this.id = id;
     }
 
-    public String getTile() {
-        return tile;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTile(String tile) {
-        this.tile = tile;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getAuthor() {

@@ -1,8 +1,9 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/bookstore
+    url: jdbc:postgresql://localhost:5555/bookstore
     username: user
     password: pass
+    initialization-mode: always
   jpa:
     hibernate:
       ddl-auto: update
