@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class BookProducer {
-    private final KafkaTemplate<String, BookDTO> kafkaTemplate;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
     private static final String TOPIC = "books";
 
-    public BookProducer(KafkaTemplate<String, BookDTO> kafkaTemplate) {
+    public BookProducer(KafkaTemplate<String, Object> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 

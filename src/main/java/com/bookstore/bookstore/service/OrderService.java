@@ -1,6 +1,8 @@
 package com.bookstore.bookstore.service;
 
+import com.bookstore.bookstore.dto.NotificationDTO;
 import com.bookstore.bookstore.dto.OrderDTO;
+import com.bookstore.bookstore.kafka.NotificationProducer;
 import com.bookstore.bookstore.model.Book;
 import com.bookstore.bookstore.model.Order;
 import com.bookstore.bookstore.model.User;
@@ -16,11 +18,13 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
     private final BookRepository bookRepository;
+    private final NotificationProducer notificationProducer;
 
-    public OrderService(OrderRepository orderRepository, UserRepository userRepository, BookRepository bookRepository) {
+    public OrderService(OrderRepository orderRepository, UserRepository userRepository, BookRepository bookRepository, NotificationProducer notificationProducer) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
         this.bookRepository = bookRepository;
+        this.notificationProducer = notificationProducer;
     }
 
     public void placeOrder(OrderDTO orderDTO) {
@@ -32,6 +36,7 @@ public class OrderService {
         Order order = new Order(LocalDateTime.now(), user, book);
         orderRepository.save(order);
 
-        // TODO: Send Kafka message (not to forget to resolve this)
+        notificationProducer.sendNotification(
+                new NotificationDTO("Order placed by user " + user.getUsername() + " for book: " + book.getTitle()));
     }
 }
