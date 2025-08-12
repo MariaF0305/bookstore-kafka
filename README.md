@@ -51,3 +51,12 @@ src/
 - Consumer logs received notifications
 
 ---
+
+## API Endpoints
+
+| Method | Endpoint | Description     |
+| ------ | -------- | --------------- |
+| POST   | /books   | Create a book   |
+| GET    | /books   | Get all books   |
+| POST   | /users   | Create a user   |
+| POST   | /orders  | Create an order |
