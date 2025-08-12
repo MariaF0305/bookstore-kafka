@@ -6,12 +6,12 @@ This project is a **Spring Boot** backend for a bookstore application.
 ---
 
 ## Technologies
-- **Java**: 21
-- **Spring Boot**: 3.5.3
+- **Java**
+- **Spring Boot**
 - **Spring Data JPA**
 - **Spring Kafka**
 - **PostgreSQL**
-- **Docker / Podman**
+- **Podman**
 - **Maven**
 
 ---
@@ -20,16 +20,27 @@ This project is a **Spring Boot** backend for a bookstore application.
 
 src/
 ├── main/java/com/bookstore/bookstore
+
 │ ├── controller/ # REST controllers
+
 │ ├── dto/ # Data Transfer Objects
+
 │ ├── model/ # Entities (JPA)
+
 │ ├── repository/ # Database access
+
 │ ├── service/ # Business logic
+
 │ ├── kafka/ # Kafka producers and consumers
+
 │ ├── configuration/ # Kafka config
+
 │ └── BookstoreApplication.java
+
 └── resources/
+
 ├── application.yml # App config
+
 └── docker-compose.yml # DB + Kafka setup
 
 ## Features
