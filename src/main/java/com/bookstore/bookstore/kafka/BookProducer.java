@@ -14,6 +14,16 @@ public class BookProducer {
     }
 
     public void sendBook(BookDTO bookDTO) {
-        kafkaTemplate.send(TOPIC, bookDTO);
+        kafkaTemplate.send(TOPIC, bookDTO)
+                .whenComplete((result, ex) -> {
+                    if (ex != null) {
+                        System.err.println("[BOOK PRODUCER] Failed: " + ex.getMessage());
+                    } else {
+                        System.out.println("[BOOK PRODUCER] Sent to " +
+                                result.getRecordMetadata().topic() + "-" +
+                                result.getRecordMetadata().partition() + "@" +
+                                result.getRecordMetadata().offset());
+                    }
+                });
     }
 }

@@ -14,6 +14,16 @@ public class NotificationProducer {
     }
 
     public void sendNotification(NotificationDTO notificationDTO) {
-        kafkaTemplate.send(TOPIC, notificationDTO);
+        kafkaTemplate.send(TOPIC, notificationDTO)
+                .whenComplete((result, ex) -> {
+                    if (ex != null) {
+                        System.err.println("[NOTIF PRODUCER] Failed: " + ex.getMessage());
+                    } else {
+                        System.out.println("[NOTIF PRODUCER] Sent to " +
+                                result.getRecordMetadata().topic() + "-" +
+                                result.getRecordMetadata().partition() + "@" +
+                                result.getRecordMetadata().offset());
+                    }
+                });
     }
 }
